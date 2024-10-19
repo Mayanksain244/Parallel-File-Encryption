@@ -1,0 +1,107 @@
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "Debug encrypt_decrypt",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\encrypt_decrypt.exe",
+//             "args": [],
+//             "stopAtEntry": false,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "integratedTerminal",
+//             "preLaunchTask": "build"
+//         },
+//         {
+//             "name": "Debug cryption (standalone)",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\cryption.exe",
+//             "args": ["your_task_data_here"],
+//             "stopAtEntry": false,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "integratedTerminal",
+//             "preLaunchTask": "build"
+//         }
+//     ]
+// }
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug encrypt_decrypt",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\encrypt_decrypt.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "build"
+        }
+    ]
+}
+
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "Debug encrypt_decrypt (Windows)",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\encrypt_decrypt.exe",
+//             "args": [],
+//             "stopAtEntry": true,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "integratedTerminal",
+//             "preLaunchTask": "build"
+//         },
+//         {
+//             "name": "Debug cryption (standalone) (Windows)",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\cryption.exe",
+//             "args": ["your_task_data_here"],
+//             "stopAtEntry": true,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "integratedTerminal",
+//             "preLaunchTask": "build"
+//         }
+//     ]
+// }
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "Debug encrypt_decrypt (Windows)",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\encrypt_decrypt.exe",
+//             "args": [],
+//             "stopAtEntry": false,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "externalTerminal",
+//             "preLaunchTask": "build"
+//         },
+//         {
+//             "name": "Debug cryption (standalone) (Windows)",
+//             "type": "cppvsdbg",
+//             "request": "launch",
+//             "program": "${workspaceFolder}\\cryption.exe",
+//             "args": ["your_task_data_here"],
+//             "stopAtEntry": false,
+//             "cwd": "${workspaceFolder}",
+//             "environment": [],
+//             "console": "externalTerminal",
+//             "preLaunchTask": "build"
+//         }
+//     ]
+// }
