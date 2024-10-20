@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\src\app\encryptDecrypt\Cryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\src\app\fileHandling\IO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\src\app\fileHandling\ReadEnv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\src\app\processes\ProcessManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{704C197C-6D9D-33FF-A02A-B95CFF752FC2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
