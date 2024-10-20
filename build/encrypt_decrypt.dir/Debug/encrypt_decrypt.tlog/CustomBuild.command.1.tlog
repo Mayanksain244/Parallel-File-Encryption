@@ -1,0 +1,10 @@
+^D:\PROJECTS\MINOR1\PARALLELFILEENCRYPTION\PARALLEL-FILE-ENCRYPTION\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption -BD:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption/build --check-stamp-file D:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
