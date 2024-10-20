@@ -23,7 +23,8 @@ int main(int argc, char* argv[]) {
                 if (entry.is_regular_file()) {
                     std::string filePath = entry.path().string();
                     IO io(filePath);
-                    std::fstream f_stream = std::move(io.getFileStream());
+                    std::fstream f_stream = io.getFileStream();
+                    // std::fstream f_stream = std::move(io.getFileStream());
 
                     if (f_stream.is_open()) {
                         Action taskAction = (action == "encrypt") ? Action::ENCRYPT : Action::DECRYPT;

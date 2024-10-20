@@ -4,58 +4,73 @@
 #include <cstring>
 #include "../encryptDecrypt/Cryption.hpp"
 #include <atomic>
-#include <semaphore>
+#include <mutex>
+#include <thread>
+
+
 
 ProcessManagement::ProcessManagement(){
-    sem_t* itemsSemaphore = sem_open("/itmes_Semaphore",O_CREAT , 0666 ,0);
-    sem_t* emptySlotsSemaphore = sem_open("/empty_slots_semaphore",O_CREAT , 0666 ,1000);
+    itemsSemaphore = CreateSemaphore(NULL, 0, 1000, NULL);
+    emptySlotsSemaphore = CreateSemaphore(NULL,1000,1000,NULL);
 
-    shmFd = shm_open(SHH_NAME , O_CREAT | O_RDWR , 0666)
-    ftruncate(shmFd , sizeof(SharedMemory));
-    sharedMem = static_cast<SharedMemory *> (mmap(nullptr, sizeof(SharedMemory), PROT_READ | PROT_WRITE , MAP_SHARED . shmFd , 0));
+    // shmFd = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(SharedMemory) , SHH_NAME);
+    shmFd = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(SharedMemory), SHH_NAME);
+
+    // ftruncate(shmFd , sizeof(SharedMemory));
+    SharedMemory* sharedMem = static_cast<SharedMemory*>(MapViewOfFile(shmFd, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(SharedMemory)));
+
     sharedMem->front = 0;
     sharedMem->rear = 0;
     sharedMem->size.store(0);
 }
 
-~ProcessManagement(){
-    unmap(sharedMem, sizeof(SharedMemory));
-    shm_unlink(SHH_NAME);
+ProcessManagement::~ProcessManagement(){
+    UnmapViewOfFile(sharedMem);
+    CloseHandle(shmFd);
 }
 
 
 bool ProcessManagement::submitToQueue(std::unique_ptr<Task> task){
-    sem_wait(emptySlotsSemaphore);
+    
+    WaitForSingleObject(emptySlotsSemaphore, INFINITE);
     std::unique_lock<std::mutex> queueLock;
 
-    if sharedMem->size.load() >= 1000{
+    if(sharedMem->size.load() >= 1000){
         return false;
     }
 
-    strcpy(shareMem->task[sharedMem->rear], task->tostring().c_str());
+
+    // Copy the task string to the shared memory, ensuring it's within the buffer limit
+    strncpy(sharedMem->task[sharedMem->rear], task->toString().c_str(), 255); 
+    sharedMem->task[sharedMem->rear][255] = '\0';  // Null-terminate the string
+
+    // strcpy(shareMem->task[sharedMem->rear], task->toString().c_str());
+
+
     sharedMem->rear = (sharedMem->rear + 1) % 1000;
     sharedMem->size.fetch_add(1);
 
-    lock.unlock();
-    sem_post(itemsSemaphore)
+    queueLock.unlock();
+    ReleaseSemaphore(itemsSemaphore, 1, NULL);
 
-    std::thread thread_1(&ProcessManagement::executeTask,this);
+    std::thread thread_1(&ProcessManagement::executeTasks,this);
     thread_1.detach();
 
     return true;
 }
 
 void ProcessManagement::executeTasks(){
-    sem_wait(itemsSemaphore);
+    WaitForSingleObject(itemsSemaphore, INFINITE);
     std::unique_lock<std::mutex> queueLock;
 
     char taskStr[256];
-    strcpy(taskStr,sharedMem->tasks[sharedMem->front])
+    strcpy(taskStr,sharedMem->task[sharedMem->front]);
     sharedMem->front = (sharedMem->front + 1) % 1000;
     sharedMem->size.fetch_sub(1);
 
-    lock.unlock();
-    sem_post(emptySlotsSemaphore);
+    queueLock.unlock();
+    ReleaseSemaphore(emptySlotsSemaphore, 1, NULL);
+
 
 
     std::cout<<"Executing child process"<<std::endl;

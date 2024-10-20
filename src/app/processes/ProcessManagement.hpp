@@ -1,7 +1,8 @@
 #ifndef PROCESS_MANAGEMENT_HPP
 #define PROCESS_MANAGEMENT_HPP
 
-
+#include <windows.h>
+#include <iostream>
 #include "Task.hpp"
 #include <queue>
 #include <memory>
@@ -9,13 +10,13 @@
 #include <semaphore>
 
 class ProcessManagement{
-    sem_t* itemsSemaphore;
-    sem_t* emptySemaphore;
+    HANDLE itemsSemaphore;
+    HANDLE emptySlotsSemaphore;
 private:
     struct SharedMemory
     {
         std::atomic<int> size;
-        char tasks[1000][256];
+        char task[1000][256];
         int front;
         int rear;
 
@@ -25,9 +26,10 @@ private:
     };
 
     SharedMemory* sharedMem;
-    int shmFd;
+    HANDLE shmFd;
     const char* SHH_NAME = "/my_queue";
-    std::mutex queueLock;
+    HANDLE queueLock = CreateMutex(NULL, FALSE, NULL);
+
     
     // std::queue<std::unique_ptr<Task>> taskQueue;
 
@@ -38,6 +40,5 @@ public:
     void executeTasks();
 
 };
-
 
 #endif
