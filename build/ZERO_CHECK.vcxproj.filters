@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Projects\Minor1\ParallelFileEncryption\Parallel-File-Encryption\build\CMakeFiles\15fafca6138d4ba95ffb6867e681c58e\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{29F6661E-8AFE-366E-B427-64E8152528B3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
