@@ -1,0 +1,10 @@
+^D:\PROJECTS\MINOR1\PARALLELFILEENCRYPTION\PARALLEL-FILE-ENCRYPTION\BUILD\CMAKEFILES\15FAFCA6138D4BA95FFB6867E681C58E\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption -BD:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Projects/Minor1/ParallelFileEncryption/Parallel-File-Encryption/build/EncryptDecrypt.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
